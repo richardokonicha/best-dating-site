@@ -23,6 +23,9 @@ const Routes = props => {
         <Route path='/login'>
           <SignIn />
         </Route>
+        <Route path='/signup'>
+          <SignUp />
+        </Route>
         <Route path='/categories/:id'>
           <About />
         </Route>
