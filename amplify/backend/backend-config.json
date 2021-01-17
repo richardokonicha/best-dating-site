@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "bestdatingsite57a22c0e": {
+    "bestdatingsite": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

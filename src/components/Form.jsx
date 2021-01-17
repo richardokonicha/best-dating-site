@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useDispatch, connect } from "react-redux";
 import ReactLoading from "react-loading";
 
-import Input from "../components/Input";
+import Input from "./Input";
 import { breakpoints, colors, fontSize } from "../utility/styleUtility";
 import * as authAction from "../store/actions/auth";
 
@@ -52,7 +52,7 @@ const Form = styled.form`
 const Login = props => {
   let history = useHistory();
   let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/user" } };
+  let { from } = location.state || { from: { pathname: "/home" } };
 
   // INITIAL STATE FOR ALL THE INPUT FIELDS
   const intialState = {
@@ -108,7 +108,7 @@ const Login = props => {
   const loginHandler = async event => {
     event.preventDefault();
     setLoading(true);
-    await dispatch(authAction.SignUp(field.email, field.password));
+    await dispatch(authAction.Login(field.email, field.password));
     setLoading(false);
     history.replace(from);
   };
@@ -118,7 +118,7 @@ const Login = props => {
 
   return (
     <Form>
-      <h2>SIGNUP</h2>
+      <h2>LOGIN</h2>
       <Input
         label='Username'
         name='email'

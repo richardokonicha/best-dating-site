@@ -1,22 +1,27 @@
 {
-    "identityPoolName": "bestdatingsite57a22c0e_identitypool_57a22c0e",
+    "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "bestda57a22c0e",
-    "userPoolName": "bestdatingsite57a22c0e_userpool_57a22c0e",
+    "resourceNameTruncated": "bestda6264385b",
+    "userPoolName": "bestdatingsite",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
         "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
-    "smsVerificationMessage": "Your verification code is {####}",
+    "smsVerificationMessage": "Forgot password code: {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Numbers",
+        "Requires Symbols",
+        "Requires Uppercase"
+    ],
     "requiredAttributes": [
         "email"
     ],
@@ -28,10 +33,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "bestda57a22c0e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "bestda6264385b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "57a22c0e",
-    "resourceName": "bestdatingsite57a22c0e",
+    "sharedId": "6264385b",
+    "resourceName": "bestdatingsite",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,12 +50,16 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "serviceName": "Cognito",
     "usernameAttributes": [
         "email"
     ],
+    "useDefault": "manual",
+    "userPoolGroups": false,
     "userPoolGroupList": [],
-    "serviceName": "Cognito",
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "authProviders": [],
     "usernameCaseSensitive": false,
     "dependsOn": []
 }
