@@ -1,11 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
 import { createTodo } from './graphql/mutations'
 import { listTodos } from './graphql/queries'
-
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import awsExports from "./aws-exports";
+import { withAuthenticator } from '@aws-amplify/ui-react'
+import About from './pages/About'
+import Chat from './pages/Home'
+import Home from './pages/Home'
+import SignIn from './pages/SignIn'
+import SignOut from './pages/SignOut'
+import SignUp from './pages/SignUp'
+import { PrivateRoute, PublicRoute } from './router/route'
+
 Amplify.configure(awsExports);
 
 const initialState = { name: '', description: '' }
@@ -13,6 +27,7 @@ const initialState = { name: '', description: '' }
 const App = () => {
   const [formState, setFormState] = useState(initialState)
   const [todos, setTodos] = useState([])
+  const [ authenticated, setAuthenticated ] = useState(true);
 
   useEffect(() => {
     fetchTodos()
@@ -43,30 +58,18 @@ const App = () => {
   }
 
   return (
-    <div style={styles.container}>
-      <h2>Amplify Todos</h2>
-      <input
-        onChange={event => setInput('name', event.target.value)}
-        style={styles.input}
-        value={formState.name}
-        placeholder="Name"
-      />
-      <input
-        onChange={event => setInput('description', event.target.value)}
-        style={styles.input}
-        value={formState.description}
-        placeholder="Description"
-      />
-      <button style={styles.button} onClick={addTodo}>Create Todo</button>
-      {
-        todos.map((todo, index) => (
-          <div key={todo.id ? todo.id : index} style={styles.todo}>
-            <p style={styles.todoName}>{todo.name}</p>
-            <p style={styles.todoDescription}>{todo.description}</p>
-          </div>
-        ))
-      }
-    </div>
+    <Router>
+      <Switch>
+          {/* <PublicRoute
+            path="/"
+            authenticated={authenticated}
+            component={Home}
+          /> */}
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/login" component={About}/>
+          <Route exact path="/chat" component={Chat}/>
+      </Switch>
+    </Router>
   )
 }
 
@@ -80,3 +83,4 @@ const styles = {
 }
 
 export default App
+// export default withAuthenticator(App)
