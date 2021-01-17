@@ -4,23 +4,10 @@ import React, { useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
 import { createTodo } from './graphql/mutations'
 import { listTodos } from './graphql/queries'
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from "react-router-dom";
 import awsExports from "./aws-exports";
 import { withAuthenticator } from '@aws-amplify/ui-react'
-import About from './pages/About'
-import Chat from './pages/Home'
-import Home from './pages/Home'
-import SignIn from './pages/SignIn'
-import SignOut from './pages/SignOut'
-import SignUp from './pages/SignUp'
-import { PrivateRoute, PublicRoute } from './router/route'
-
-Amplify.configure(awsExports);
+import Routes from './router/Routes'
+// import { PrivateRoute, PublicRoute } from './router/Routes'
 
 const initialState = { name: '', description: '' }
 
@@ -58,29 +45,10 @@ const App = () => {
   }
 
   return (
-    <Router>
-      <Switch>
-          {/* <PublicRoute
-            path="/"
-            authenticated={authenticated}
-            component={Home}
-          /> */}
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/login" component={About}/>
-          <Route exact path="/chat" component={Chat}/>
-      </Switch>
-    </Router>
+    <div className='App'>
+      <Routes />
+    </div>
   )
 }
 
-const styles = {
-  container: { width: 400, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
-  todo: {  marginBottom: 15 },
-  input: { border: 'none', backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
-  todoName: { fontSize: 20, fontWeight: 'bold' },
-  todoDescription: { marginBottom: 0 },
-  button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
-}
-
 export default App
-// export default withAuthenticator(App)
