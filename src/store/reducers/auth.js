@@ -1,4 +1,4 @@
-import { LOG_OUT, LOGIN_SUCCESS, LOGIN_FAILED } from "../types/types";
+import {LOGIN_SUCCESS, LOGIN_FAILED } from "../types/types";
 
 const initialState = {
   logInSuccess: false,
@@ -7,7 +7,7 @@ const initialState = {
   logInError: null
 };
 
-const Auth = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
@@ -21,11 +21,9 @@ const Auth = (state = initialState, action) => {
         logInFailed: true,
         logInError: action.payload
       };
-    case LOG_OUT:
-      return initialState;
     default:
       return state;
   }
 };
 
-export default Auth;
+export default AuthReducer;

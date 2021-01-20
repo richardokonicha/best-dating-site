@@ -1,4 +1,4 @@
-import * as authAction from "../store/actions/auth";
+import * as userAction from "../store/actions/user";
 import { useDispatch, connect } from "react-redux";
 import { Auth } from "aws-amplify";
 import { useState, useEffect } from 'react'
@@ -7,39 +7,18 @@ import { useState, useEffect } from 'react'
 
 const Home = () => {
   const dispatch = useDispatch();
-  const logoutHandler = event => {
+  const signOutHandler = event => {
     event.preventDefault();
     // setLoading(true);
-    dispatch(authAction.Logout());
+    dispatch(userAction.signOut());
     // setLoading(false);
   };
-
-  const [user, setUser] = useState({});
-  async function checkUser() {
-    try {
-      const data = await Auth.currentUserPoolUser();
-      const userInfo = { username: data.username, ...data.attributes };
-      setUser(userInfo);
-    } catch (err) {
-      console.log('error: ', err);
-    }
-  }
-  function signOut() {
-    Auth.signOut().catch((err) => console.log('error signing out: ', err));
-    setUser({})
-  }
-
-  
-  useEffect(() => {
-    checkUser();
-  }, []);
 
   return(
     <>
     <h1>This is the about Home</h1>
     <div></div>
-    ffdf
-    <button onClick={logoutHandler} >logout</button>
+    <button onClick={signOutHandler} >SignOut</button>
     </>
   )
   }
