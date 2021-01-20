@@ -9,7 +9,7 @@ export const Login = (email, password) => {
     try {
       const user = await Auth.signIn(email, password);
       const userSession = user.signInUserSession;
-      //   localStorage.setItem("token", userSession.idToken.jwtToken);
+      localStorage.setItem("token", userSession.idToken.jwtToken);
       dispatch({ type: LOGIN_SUCCESS, payload: userSession.idToken.jwtToken });
     } catch (err) {
       dispatch({ type: LOGIN_FAILED, payload: err });

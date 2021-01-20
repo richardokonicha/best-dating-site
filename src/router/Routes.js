@@ -16,10 +16,10 @@ const Routes = props => {
   return (
     <div>
       {/* <NavBar auth={props.state.auth} /> */}
-      <Switch>
-        <Route exact path='/'>
+      <Switch>  
+        <PrivateRoute exact path='/' auth={props.state.auth}>
           <Home />
-        </Route>
+        </PrivateRoute>
         <Route path='/login'>
           <SignIn />
         </Route>

@@ -1,5 +1,5 @@
 import React from "react";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import ReactDOM from "react-dom";
@@ -7,9 +7,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import Auth from "./store/reducers/auth";
-
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
@@ -19,7 +17,12 @@ const rootReducer = combineReducers({
   auth: Auth
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const store = compose(
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)(createStore)(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
