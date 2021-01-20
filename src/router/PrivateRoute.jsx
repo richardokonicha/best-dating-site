@@ -6,7 +6,7 @@ const PrivateRoute = ({ children, auth, ...rest }) => {
     <Route
       {...rest}
       render={location =>
-        auth.logInSuccess ? children : <Redirect to='/login' />
+        auth ? children : <Redirect to='/auth' />
       }
     />
   );

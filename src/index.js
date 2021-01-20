@@ -6,18 +6,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import Auth from "./store/reducers/auth";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
+import UserReducer from "./store/reducers/user";
+import AuthReducer from "./store/reducers/auth";
 Amplify.configure(awsExports);
 
 const rootReducer = combineReducers({
-  auth: Auth
+  auth: AuthReducer,
+  user: UserReducer
 });
-
-// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const store = compose(
   applyMiddleware(thunk),
