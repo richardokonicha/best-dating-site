@@ -52,7 +52,7 @@ const Form = styled.form`
 const Login = props => {
   let history = useHistory();
   let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/home" } };
+  let { from } = location.state || { from: { pathname: "/" } };
 
   // INITIAL STATE FOR ALL THE INPUT FIELDS
   const intialState = {
@@ -110,7 +110,8 @@ const Login = props => {
     setLoading(true);
     await dispatch(authAction.Login(field.email, field.password));
     setLoading(false);
-    history.replace(from);
+    console.log(props.state.auth)
+    // history.replace(from);
   };
 
   // IF NO ERROR FROM THE INPUT FIELDS => isEnabled is TRUE
