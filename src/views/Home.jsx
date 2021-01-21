@@ -1,9 +1,5 @@
 import * as userAction from "../store/actions/user";
-import { useDispatch, connect } from "react-redux";
-import { Auth } from "aws-amplify";
-import { useState, useEffect } from 'react'
-
-
+import { useDispatch} from "react-redux";
 
 const Home = () => {
   const dispatch = useDispatch();
