@@ -1,17 +1,17 @@
-// import logo from './logo.svg';
-import React, { useEffect, useState } from 'react'
-import { Auth, Hub } from 'aws-amplify'
+import React, { useState } from 'react'
+import { Auth } from 'aws-amplify'
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as authAction from "../../store/actions/auth";
+// import * as authAction from "../../store/actions/auth";
 import * as userAction from "../../store/actions/user";
+import Form from './Form'
 
 const initialFormState = {
   username: '',
   password: '', 
   email: '',
   authcode: '',
-  formType: 'signUp'
+  formType: 'Sign Up'
 }
 
 const AuthView = () => {
@@ -41,7 +41,8 @@ const AuthView = () => {
     }
   }
  
-  async function signIn() {
+  async function signIn(e) {
+    e.preventDefault()
     try {
       const { username, password } = formState
       await Auth.signIn(username, password);
@@ -63,25 +64,28 @@ const AuthView = () => {
   return (
     <div className='App'>
       {
-        formType === 'signUp' && (
+        formType === 'Sign Up' && (
           <div>
             <input name="username" onChange={onChange} placeholder="username"></input>
             <input name="password" onChange={onChange} placeholder="password"></input>
             <input name="email" type="email" onChange={onChange} placeholder="Email"></input>
             <button onClick={signUp} >Sign Up</button>
-            <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'signIn'}))}}>Sign In</button>
+            <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign In'}))}}>Sign In</button>
+            <Form formType={formType} onChange={onChange} action={signUp} updateFormState={updateFormState}/>
+
 
           </div>
         )
       }
       {
-        formType === 'signIn' && (
-          <div>
-            <input name="username" onChange={onChange} placeholder="username"></input>
-            <input name="password" onChange={onChange} placeholder="password"></input>
-            <button onClick={signIn}>Sign in</button>
-            <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'signUp'}))}}>Sign Up</button>
-          </div>
+        formType === 'Sign In' && (
+          // <div>
+          //   <input name="username" onChange={onChange} placeholder="username"></input>
+          //   <input name="password" onChange={onChange} placeholder="password"></input>
+          //   <button onClick={signIn}>Sign in</button>
+          //   <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign Up'}))}}>Sign Up</button>
+          // </div>
+          <Form formType={formType} onChange={onChange} action={signIn} updateFormState={updateFormState} formState={formState}/>
         )
       }
       {

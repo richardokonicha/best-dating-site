@@ -1,5 +1,5 @@
 import { Auth } from "aws-amplify";
-import { LOGIN_SUCCESS, LOGIN_FAILED, SIGNUP_FAILED, SIGNUP_SUCCESS, SIGN_OUT } from "../types/types";
+import { LOGIN_SUCCESS, LOGIN_FAILED, SIGNUP_FAILED } from "../types/types";
 
 export const Login = (email, password) => {
   return async dispatch => {

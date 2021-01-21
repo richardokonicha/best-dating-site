@@ -2,13 +2,12 @@ import React from "react";
 import { withRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
-import About from '../pages/About'
-import Chat from '../pages/Home'
-import Home from '../pages/Home'
-import SignIn from '../pages/SignIn'
-import SignOut from '../pages/SignOut'
-import SignUp from '../pages/SignUp'
-import AuthView from '../pages/AuthView/AuthView'
+import About from '../views/About'
+import Chat from '../views/Home'
+import Home from '../views/Home'
+import AuthView from '../views/AuthView/AuthView'
+import SignInView from '../views/AuthView/Form'
+
 
 const Routes = props => {
   return (
@@ -24,11 +23,8 @@ const Routes = props => {
         <Route path='/about'>
           <About />
         </Route>
-        <Route path='/login'>
-          <SignIn />
-        </Route>
-        <Route path='/signup'>
-          <SignUp />
+        <Route path='/signin'>
+          < SignInView />
         </Route>
         <PrivateRoute path='/chat' auth={props.auth}>
           <Chat />
