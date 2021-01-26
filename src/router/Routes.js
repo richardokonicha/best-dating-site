@@ -3,7 +3,7 @@ import { withRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import About from '../views/About'
-import Chat from '../views/Home'
+import Chat from '../views/Chat'
 import Home from '../views/Home'
 import AuthView from '../views/AuthView/AuthView'
 import SignInView from '../views/AuthView/Form'
@@ -26,9 +26,9 @@ const Routes = props => {
         <Route path='/signin'>
           < SignInView />
         </Route>
-        <PrivateRoute path='/chat' auth={props.auth}>
+        <Route path='/chat' auth={props.auth}>
           <Chat />
-        </PrivateRoute>
+        </Route>
       </Switch>
     </div>
   );
