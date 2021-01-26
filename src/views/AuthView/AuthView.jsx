@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import * as authAction from "../../store/actions/auth";
 import * as userAction from "../../store/actions/user";
 import Form from './Form'
 
@@ -11,7 +10,8 @@ const initialFormState = {
   password: '', 
   email: '',
   authcode: '',
-  formType: 'Sign Up'
+  formType: 'Sign In',
+  error: ''
 }
 
 const AuthView = () => {
@@ -25,7 +25,8 @@ const AuthView = () => {
     updateFormState(() => ({...formState, [e.target.name]: e.target.value}))
   }
 
-  async function signUp() {
+  async function signUp(e) {
+    e.preventDefault()
     try {
         const { username, email, password } = formState
         await Auth.signUp({
@@ -37,6 +38,7 @@ const AuthView = () => {
         });
         updateFormState(()=>({ ...formState, formType: 'confirmSignUp'}))
     } catch (error) {
+        updateFormState(()=>({...formState, error: error.message}))
         console.log('error signing up:', error);
     }
   }
@@ -47,7 +49,8 @@ const AuthView = () => {
       const { username, password } = formState
       await Auth.signIn(username, password);
     } catch (error) {
-        console.log('error signing in', error);
+      updateFormState(()=>({...formState, error: error.message}))
+      console.log('error signing in', error)
     }
   }
 
@@ -65,16 +68,20 @@ const AuthView = () => {
     <div className='App'>
       {
         formType === 'Sign Up' && (
-          <div>
-            <input name="username" onChange={onChange} placeholder="username"></input>
-            <input name="password" onChange={onChange} placeholder="password"></input>
-            <input name="email" type="email" onChange={onChange} placeholder="Email"></input>
-            <button onClick={signUp} >Sign Up</button>
-            <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign In'}))}}>Sign In</button>
-
-            <Form formType={formType} onChange={onChange} action={signUp} updateFormState={updateFormState}/>
-
-          </div>
+          // <div>
+          //   <input name="username" onChange={onChange} placeholder="username"></input>
+          //   <input name="password" onChange={onChange} placeholder="password"></input>
+          //   <input name="email" type="email" onChange={onChange} placeholder="Email"></input>
+          //   <button onClick={signUp} >Sign Up</button>
+          //   <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign In'}))}}>Sign In</button>
+          // </div>
+            <Form 
+            formType={formType} 
+            onChange={onChange} 
+            action={signUp} 
+            updateFormState={updateFormState}
+            formState={formState}
+            />
         )
       }
       {
@@ -85,7 +92,13 @@ const AuthView = () => {
           //   <button onClick={signIn}>Sign in</button>
           //   <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign Up'}))}}>Sign Up</button>
           // </div>
-          <Form formType={formType} onChange={onChange} action={signIn} updateFormState={updateFormState} formState={formState}/>
+          <Form 
+          formType={formType} 
+          onChange={onChange} 
+          action={signIn} 
+          updateFormState={updateFormState} 
+          formState={formState}
+          />
         )
       }
       {
