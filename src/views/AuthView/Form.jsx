@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 // import { signin } from "../helpers/auth";
 
 const Input = ( props ) => {
@@ -6,7 +6,7 @@ const Input = ( props ) => {
     return (
         <div className="form-group">
             {
-                type == 'password' ? (
+                type === 'password' ? (
                     <div className="float-right">
                         <a href="/forgotpassward" className="text-muted font-size-13">Forgot password?</a>
                     </div>
@@ -47,7 +47,7 @@ const Form = (props) => {
 
                         <h4>{formType}</h4>
 
-                        { formType == "Sign In" ? (
+                        { formType === "Sign In" ? (
                              <p className="text-muted mb-4">Sign in to continue to the best dating site.</p>
                         ) : 
                         (
@@ -89,7 +89,7 @@ const Form = (props) => {
                     </div>
 
                     <div className="mt-5 text-center">
-                        { formType == "Sign In" ? (
+                        { formType === "Sign In" ? (
                             <p>Don't have an account ? <a onClick={() => {updateFormState(()=>({ ...formState, formType: "Sign Up"}))}} className="font-weight-medium text-primary"> Sign Up </a> </p>
                         ) : 
                         (
