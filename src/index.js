@@ -12,6 +12,7 @@ import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 import UserReducer from "./store/reducers/user";
 import AuthReducer from "./store/reducers/auth";
+
 Amplify.configure(awsExports);
 
 const rootReducer = combineReducers({
@@ -21,8 +22,6 @@ const rootReducer = combineReducers({
 
 const store = compose(
   applyMiddleware(thunk),
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-
   typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "undefined" ? a => a : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 
 )(createStore)(rootReducer);
