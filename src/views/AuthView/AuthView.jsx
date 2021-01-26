@@ -71,8 +71,8 @@ const AuthView = () => {
             <input name="email" type="email" onChange={onChange} placeholder="Email"></input>
             <button onClick={signUp} >Sign Up</button>
             <button onClick={() => {updateFormState(()=>({ ...formState, formType: 'Sign In'}))}}>Sign In</button>
-            <Form formType={formType} onChange={onChange} action={signUp} updateFormState={updateFormState}/>
 
+            <Form formType={formType} onChange={onChange} action={signUp} updateFormState={updateFormState}/>
 
           </div>
         )
