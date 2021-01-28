@@ -3,27 +3,27 @@ import 'firebase/auth';
 import 'firebase/database';
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBT27zYr7_11CWeNq8iHWRNCJhbsXE2nQw",
-//   authDomain: "the-best-dating-site.firebaseapp.com",
-//   projectId: "the-best-dating-site",
-//   storageBucket: "the-best-dating-site.appspot.com",
-//   messagingSenderId: "493684652070",
-//   appId: "1:493684652070:web:77829428e042f041ed4ee7",
-//   measurementId: "G-BVGR1GVG9C"
-// };
-
-
 const config = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-  appId: process.env.REACT_APP_ID
+  apiKey: "AIzaSyBT27zYr7_11CWeNq8iHWRNCJhbsXE2nQw",
+  authDomain: "the-best-dating-site.firebaseapp.com",
+  projectId: "the-best-dating-site",
+  storageBucket: "the-best-dating-site.appspot.com",
+  messagingSenderId: "493684652070",
+  appId: "1:493684652070:web:77829428e042f041ed4ee7",
+  measurementId: "G-BVGR1GVG9C"
 };
+
+
+// const config = {
+//   apiKey: process.env.REACT_APP_API_KEY,
+//   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+//   databaseURL: process.env.REACT_APP_DATABASE_URL,
+//   projectId: process.env.REACT_APP_PROJECT_ID,
+//   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+//   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+//   appId: process.env.REACT_APP_ID
+// };
 
 class Firebase {
   constructor() {
