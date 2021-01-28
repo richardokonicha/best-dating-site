@@ -1,27 +1,31 @@
-import { UPDATE_USER, SIGN_OUT } from "../types/types";
-
-const initialState = {
-  user: null,
-  loggedIn: false
+const INITIAL_STATE = {
+  users: null,
 };
 
-const UserReducer = ( state = initialState, action ) => {
+const applySetUsers = (state, action) => ({
+  ...state,
+  users: action.users,
+});
+
+const applySetUser = (state, action) => ({
+  ...state,
+  users: {
+    ...state.users,
+    [action.uid]: action.user,
+  },
+});
+
+function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case UPDATE_USER:
-      return {
-        ...state,
-        user: action.payload,
-        loggedIn: true
-      }
-    case SIGN_OUT:
-      return {
-        ...state,
-        user: null,
-        loggedIn: false
-      }
+    case 'USERS_SET': {
+      return applySetUsers(state, action);
+    }
+    case 'USER_SET': {
+      return applySetUser(state, action);
+    }
     default:
       return state;
   }
 }
 
-export default UserReducer;
+export default userReducer;
