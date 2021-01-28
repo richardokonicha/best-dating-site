@@ -1,37 +1,22 @@
 import React from "react";
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
-import UserReducer from "./store/reducers/user";
-import AuthReducer from "./store/reducers/auth";
-
-Amplify.configure(awsExports);
-
-const rootReducer = combineReducers({
-  auth: AuthReducer,
-  user: UserReducer
-});
-
-const store = compose(
-  applyMiddleware(thunk),
-  typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "undefined" ? a => a : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-
-)(createStore)(rootReducer);
+import store from './store/index';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
+      <FirebaseContext.Provider value={new Firebase()}>
         <App />
-      </BrowserRouter>
+      </FirebaseContext.Provider>
+      {/* </BrowserRouter> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
