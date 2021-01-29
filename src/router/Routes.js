@@ -11,9 +11,9 @@ import SignInView from '../views/AuthView/Form'
 import SignInPage from '../components/SignIn';
 import SignUpPage from '../components/SignUp';
 
-// import Navigation from '../Navigation';
+import Navigation from '../components/Navigation';
 // import PasswordForgetPage from '../PasswordForget';
-// import HomePage from '../Home';
+import HomePage from '../components/Home';
 // import AccountPage from '../Account';
 // import AdminPage from '../Admin';
 
@@ -24,17 +24,17 @@ const Routes = props => {
   return (
     <Router>
     <div>
-      {/* <Navigation /> */}
+      <Navigation />
       <hr />
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      
+      <Route path={ROUTES.HOME} component={HomePage} />
+
       {/* <Route
         path={ROUTES.PASSWORD_FORGET}
         component={PasswordForgetPage}
       />
-      <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
     </div>

@@ -2,7 +2,6 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-
 const config = {
   apiKey: "AIzaSyBT27zYr7_11CWeNq8iHWRNCJhbsXE2nQw",
   authDomain: "the-best-dating-site.firebaseapp.com",
@@ -12,7 +11,6 @@ const config = {
   appId: "1:493684652070:web:77829428e042f041ed4ee7",
   measurementId: "G-BVGR1GVG9C"
 };
-
 
 // const config = {
 //   apiKey: process.env.REACT_APP_API_KEY,
