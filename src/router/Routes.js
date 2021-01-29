@@ -24,11 +24,11 @@ const Routes = props => {
   return (
     <Router>
     <div>
-      <Navigation />
-      <hr />
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+      {/* <Navigation /> */}
+      {/* <hr /> */}
+      <Route exact path={ROUTES.LANDING} component={SignInPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
 
       {/* <Route

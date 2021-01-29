@@ -9,12 +9,7 @@ const Input = (props) => {
     <div className="form-group">
       {type === "password" && formType === "Sign In" ? (
         <div className="float-right">
-
           <Link className="text-muted font-size-13" to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
-
-          {/* <a href="/forgotpassward" className="text-muted font-size-13">
-            Forgot password?
-          </a> */}
         </div>
       ) : null}
       <label>{label}</label>
@@ -37,7 +32,7 @@ const Input = (props) => {
 };
 
 const Form = (props) => {
-  const { formType, onChange, action, updateFormState, formState } = props;
+  const { formType, onChange, action, formState, onChangeCheckbox } = props;
   const { error } = formState;
   return (
     <div className="account-pages ">
@@ -74,32 +69,28 @@ const Form = (props) => {
               <div className="card-body p-4">
                 <div className="p-3">
                   <form autoComplete="on">
+                    {formType === "Sign Up" ? (
+                      <Input
+                        onChange={onChange}
+                        label="Username"
+                        icon="username"
+                        type="username"
+                        formType={formType}
+                      />
+                    ) : null}
                     <Input
                       onChange={onChange}
                       label="Email"
                       icon="email"
-											type="email"
-											formType={formType}
+                      type="email"
+                      formType={formType}
                     />
-										{
-											formType === "Sign Up" ? (
-												<Input
-												onChange={onChange}
-												label="Email"
-												icon="email"
-												type="email"
-												formType={formType}
-											/>
-											) : (
-												null
-											)
-										}
                     <Input
                       onChange={onChange}
                       label="Password"
                       icon="lock"
-											type="password"
-											formType={formType}
+                      type="password"
+                      formType={formType}
                     />
                     <div className="form-group">
                       {error !== undefined ? (
@@ -107,34 +98,57 @@ const Form = (props) => {
                       ) : null}
                     </div>
                     <div className="custom-control custom-checkbox mb-4">
-                      <input
-                        type="checkbox"
-                        className="custom-control-input"
-                        id="remember-check"
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="remember-check"
-                      >
-                        Remember me
-                      </label>
+                      {formType === "Sign Up" ? (
+                        <>
+                          <input
+                            onChange={onChangeCheckbox}
+                            name="isAdmin"
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="remember-check"
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="remember-check"
+                          >
+                            Create as admin
+                          </label>
+                        </>
+                      ) : (
+                        // null
+                        <>
+                          <input
+                            onChange={onChangeCheckbox}
+                            // name="isAdmin"
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="remember-check"
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="remember-check"
+                          >
+                            Remember me
+                          </label>
+                        </>
+                      )}
                     </div>
                     <div>
-											{ formType === "Sign In" ? (
-												<button
-													onClick={(e) => action(e)}
-													className="btn btn-primary btn-block waves-effect waves-light"
-												>
-													Sign in
-												</button>
-											) : (
-												<button
-												onClick={(e) => action(e)}
-												className="btn btn-primary btn-block waves-effect waves-light"
-											>
-												Sign Up
-											</button>
-											)}
+                      {formType === "Sign In" ? (
+                        <button
+                          onClick={(e) => action(e)}
+                          className="btn btn-primary btn-block waves-effect waves-light"
+                        >
+                          Sign in
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => action(e)}
+                          className="btn btn-primary btn-block waves-effect waves-light"
+                        >
+                          Sign Up
+                        </button>
+                      )}
                     </div>
                   </form>
                 </div>
@@ -146,34 +160,11 @@ const Form = (props) => {
                 <p>
                   Don't have an account ?{" "}
                   <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-                  {/* <a
-                    onClick={() => {
-                      updateFormState(() => ({
-                        ...formState,
-                        formType: "Sign Up",
-                      }));
-                    }}
-                    className="font-weight-medium text-primary"
-                  >
-                    {" "}
-                    Sign Up{" "}
-                  </a>{" "} */}
                 </p>
               ) : (
                 <p>
                   Already have an account ?{" "}
-                  <a 
-                    onClick={() => {
-                      updateFormState(() => ({
-                        ...formState,
-                        formType: "Sign In",
-                      }));
-                    }}
-                    className="font-weight-medium text-primary"
-                  >
-                    {" "}
-                    Sign In{" "}
-                  </a>{" "}
+                   <Link className="font-weight-medium text-primary" to={ROUTES.SIGN_IN}>Sign In</Link>
                 </p>
               )}
               <p>
