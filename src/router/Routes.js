@@ -12,10 +12,10 @@ import SignInPage from '../components/SignIn';
 import SignUpPage from '../components/SignUp';
 
 import Navigation from '../components/Navigation';
-// import PasswordForgetPage from '../PasswordForget';
+import PasswordForgetPage from '../components/PasswordForget';
 import HomePage from '../components/Home';
-// import AccountPage from '../Account';
-// import AdminPage from '../Admin';
+import AccountPage from '../components/Account';
+import AdminPage from '../components/Admin';
 
 import LandingPage from '../components/Landing';
 import * as ROUTES from '../constants/routes';
@@ -30,13 +30,9 @@ const Routes = props => {
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
-
-      {/* <Route
-        path={ROUTES.PASSWORD_FORGET}
-        component={PasswordForgetPage}
-      />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-      <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
+      <Route path={ROUTES.ADMIN} component={AdminPage} /> 
     </div>
   </Router>
   );
