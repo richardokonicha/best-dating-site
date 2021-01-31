@@ -20,15 +20,33 @@ class UserList extends Component {
       this.setState({ loading: true });
     }
 
-    this.props.firebase.users().on('value', snapshot => {
-      this.props.onSetUsers(snapshot.val());
+    this.unsubscribe = this.props.firebase
+      .users()
+      .onSnapshot(snapshot => {
+        let usersObject = []
 
-      this.setState({ loading: false });
-    });
+        snapshot.forEach(doc => 
+          usersObject.push({...doc.data(), uid: doc.id })
+        )
+
+        this.props.onSetUsers(usersObject);
+        this.setState({ loading: false });
+      })
+
+
+    // this.props.firebase.users().on('value', snapshot => {
+
+    //   const usersObject = snapshot.val()
+
+    //   this.props.onSetUsers(usersObject);
+
+    //   this.setState({ loading: false });
+    // });
   }
 
   componentWillUnmount() {
-    this.props.firebase.users().off();
+    // this.props.firebase.users().off();
+    this.unsubscribe()
   }
 
   render() {
