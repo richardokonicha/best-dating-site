@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database';
+// import 'firebase/database';
+import 'firebase/firestore'
 
 const config = {
   apiKey: "AIzaSyBT27zYr7_11CWeNq8iHWRNCJhbsXE2nQw",
@@ -29,13 +30,15 @@ class Firebase {
 
     /* Helper */
 
-    this.serverValue = app.database.ServerValue;
+    // this.serverValue = app.database.ServerValue;
+    this.serverValue = app.firestore.FieldValue;
     this.emailAuthProvider = app.auth.EmailAuthProvider;
 
     /* Firebase APIs */
 
+    // this.db = app.database();
     this.auth = app.auth();
-    this.db = app.database();
+    this.db = app.firestore()
 
     /* Social Sign In Method Provider */
 
@@ -79,9 +82,11 @@ class Firebase {
     this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.user(authUser.uid)
-          .once('value')
+          // .once('value')
+          .get()
           .then(snapshot => {
-            const dbUser = snapshot.val();
+            // const dbUser = snapshot.val();
+            const dbUser = snapshot.data();
 
             // default empty roles
             if (!dbUser.roles) {
@@ -106,15 +111,16 @@ class Firebase {
 
   // *** User API ***
 
-  user = uid => this.db.ref(`users/${uid}`);
-
-  users = () => this.db.ref('users');
+  // user = uid => this.db.ref(`users/${uid}`);
+  user = uid => this.db.doc(`users/${uid}`);
+  users = () => this.db.collection('users');
 
   // *** Message API ***
+  // message = uid => this.db.ref(`messages/${uid}`);
+  // messages = () => this.db.ref('messages');
 
-  message = uid => this.db.ref(`messages/${uid}`);
-
-  messages = () => this.db.ref('messages');
+  message = uid => this.db.doc(`messages/${uid}`);
+  messages = () => this.db.collection('messages');
 }
 
 export default Firebase;

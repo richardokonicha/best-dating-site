@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import store from './store/index';
 import Firebase, { FirebaseContext } from './components/Firebase';
 
+import LogRocket from 'logrocket';
+LogRocket.init('ggukkm/best-dating-app');
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
