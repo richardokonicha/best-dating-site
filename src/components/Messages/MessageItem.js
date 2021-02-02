@@ -60,7 +60,7 @@ class MessageItem extends Component {
             {!editMode && (
               <button
                 type="button"
-                onClick={() => onRemoveMessage(message.uid)}
+                onClick={() => onRemoveMessage(message)}
               >
                 Delete
               </button>

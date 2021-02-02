@@ -14,7 +14,7 @@ const initialState = {
 }
 
 
-const MessageTab = (props) => {
+const ConversationPool = (props) => {
 
     const [chatState, setChatState] = useState(initialState)
     const { user, chats, users, content, readError, writeError, loadingChats, error } = chatState
@@ -735,4 +735,4 @@ const MessageTab = (props) => {
     )
 }
 
-export default MessageTab
+export default ConversationPool

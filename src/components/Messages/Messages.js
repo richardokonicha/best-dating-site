@@ -55,7 +55,14 @@ const Messages = (props) => {
   }
 
   const onRemoveMessage = uid => {
-    firebase.message(uid).remove()
+    console.log(uid)
+    console.log(messages)
+    firebase.db.collection("messages").doc(uid).delete().then(function() {
+      console.log("Document successfully deleted!", uid);
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+
   }
 
   const onNextPage = () => {

@@ -2,8 +2,8 @@
 import 'simplebar/dist/simplebar.min.css';
 import { useState } from "react"
 import SideMenu from './SideMenu';
-import UsersTab from './UsersTab';
-import MessageTab from './MessageTab';
+import Panes from './Panes';
+import ConversationPool from './ConversationPool/ConversationPool';
 
 const initialState = {
     user: 'auth().currentUser',
@@ -16,6 +16,11 @@ const initialState = {
     error: ""
 }
 
+const userData = [
+    { name: 'Richard Okonicha', profileImg: 'R'},
+    { name: 'Mark Messer', profileImg: 'M'},
+    { name: 'General', profileImg: 'G'}
+]
 
 const Chat = () => {
 
@@ -26,11 +31,9 @@ const Chat = () => {
 
 
         <div className="layout-wrapper d-lg-flex">
-
-        <SideMenu/>
-        <UsersTab/>
-        <MessageTab/>
-
+        <SideMenu />
+        <Panes userData={userData}/>
+        <ConversationPool/>
         </div>
 
     )
