@@ -43,7 +43,7 @@ const SideMenu = () => {
                                 <i className="ri-settings-2-line"></i>
                             </a>
                         </li>
-                        <li className="nav-item dropdown profile-user-dropdown d-inline-block d-lg-none">
+                        {/* <li className="nav-item dropdown profile-user-dropdown d-inline-block d-lg-none">
                             <a className="nav-link dropdown-toggle" href="/chat" role="button" data-toggle="dropdown" aria-expanded="false">
                                 <img src="assets/images/users/avatar-1.jpg" alt="" className="profile-user rounded-circle" />
                             </a>
@@ -53,7 +53,7 @@ const SideMenu = () => {
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="/chat">Log out <i className="ri-logout-circle-r-line float-right text-muted"></i></a>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
@@ -78,6 +78,7 @@ const SideMenu = () => {
                         </li>
                     </ul>
                 </div>
+                
             </div>
     )
 }
