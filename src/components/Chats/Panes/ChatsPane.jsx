@@ -45,7 +45,7 @@ const ChatsPan = () => {
         <div>
 
 
-          {/* <div className="px-4 pt-4">
+          <div className="px-4 pt-4">
             <h4 className="mb-4">Chats</h4>
             <div className="search-box chat-search-box">
               <div className="input-group mb-3 bg-light  input-group-lg rounded-lg">
@@ -64,7 +64,7 @@ const ChatsPan = () => {
                 />
               </div>
             </div>
-          </div> */}
+          </div> 
 
 
           {/* carousel */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { withRouter, Switch, Route, BrowserRouter as Router , Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import About from '../views/About'
@@ -20,19 +20,31 @@ import AdminPage from '../components/Admin';
 import LandingPage from '../components/Landing';
 import * as ROUTES from '../constants/routes';
 
+import Chats from '../components/Chats'
+import ProfilePane from "../components/Chats/Panes/ProfilePane";
+
+
+
 const Routes = props => {
   return (
     <Router>
     <div>
       {/* <Navigation /> */}
       {/* <hr /> */}
-      <Route exact path={ROUTES.LANDING} component={HomePage} />
+      <Route exact path={ROUTES.LANDING} component={Chats}>
+        {/* <Redirect to="/"/> */}
+      </Route>
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} /> 
+
+      {/* <Route path={ROUTES.CHATS} component={Chats} />  */}
+      {/* <Route path={ROUTES.PROFILE} component={ProfilePane} />  */}
+
+
     </div>
   </Router>
   );
