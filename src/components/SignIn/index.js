@@ -29,7 +29,7 @@ const SignInPage = (props) => {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         updateFormState({ ...INITIAL_STATE });
-        props.history.push(ROUTES.HOME);
+        props.history.push(ROUTES.CHATS);
       })
       .catch(error => {
         updateFormState(()=>({...formState, error: error.message}))

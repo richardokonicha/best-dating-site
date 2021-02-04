@@ -13,12 +13,14 @@ import "../src/asset/style/coursole.css"
 import "../src/asset/style/icon.css"
 
 import { withAuthentication } from './components/Session';
+import Rout from "./router/rout";
 
 const App = () => {
   // const dispatch = useDispatch()
   return(
     <div>
       <Routes />
+      {/* <Rout></Rout> */}
     </div>
   )
 }
