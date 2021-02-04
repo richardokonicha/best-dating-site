@@ -4,7 +4,7 @@ import ProfilePane from './ProfilePane'
 import ChatsPane from './ChatsPane'
 import GroupsPane from "./GroupsPane"
 import SettingPane from "./SettingPane"
-import { Switch, Route, BrowserRouter as Router , Redirect} from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router , Redirect, useRouteMatch} from "react-router-dom";
 
 
 const userData = [
@@ -18,32 +18,30 @@ const userData = [
 ]
 
 const Panes = () => {
-  
+  let { path} = useRouteMatch();
 
   return (
     <div className="chat-leftsidebar mr-lg-1">
     <div className="tab-content">
         <Switch>
-          {/* <Route exact path="/">
-            <Redirect to="/chat"/>
+          {/* <Route exact path={path}>
+            <Redirect to={`${path}/chat`} />
           </Route>   */}
-          <Route path="/profile">
+          <Route path={`${path}/profile`}>
             <ProfilePane/>
           </Route>
-          <Route exact path="/">
+          <Route path={`${path}/chat`}>
             <ChatsPane/>
           </Route>
-          <Route path="/group">
+          <Route path={`${path}/group`}>
             <GroupsPane/>
           </Route>
-          <Route path="/setting">
-        <SettingPane/>
+          <Route path={`${path}/setting`}>
+            <SettingPane/>
           </Route>
         </Switch>
     </div>
     </div>
-
-
 
   );
 };

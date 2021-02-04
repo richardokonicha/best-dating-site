@@ -1,7 +1,7 @@
 // import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import { useState } from "react"
-import SideMenu from './SideMenu';
+import Navigator from './Navigator';
 import Panes from './Panes';
 import ConversationPool from './ConversationPool/ConversationPool';
 import { withAuthorization, withEmailVerification } from '../Session';
@@ -27,24 +27,17 @@ const userData = [
 ]
 
 const Chat = () => {
-
     const [chatState, setChatState] = useState(initialState)
     const { user, chats, users, content, readError, writeError, loadingChats, error } = chatState
 
     return (
-        // <Router>
-
-
         <div className="layout-wrapper d-lg-flex">
-        <SideMenu />
+        <Navigator />
         <Panes userData={userData}/>
         <ConversationPool/>
         </div>
-        // </Router>
-
     )
 }
-
 
 const condition = authUser => !!authUser;
 
@@ -52,6 +45,3 @@ export default compose(
   withEmailVerification,
   withAuthorization(condition),
 )(Chat);
-
-
-// export default Chat
