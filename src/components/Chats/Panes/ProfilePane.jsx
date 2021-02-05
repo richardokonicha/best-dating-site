@@ -1,6 +1,6 @@
 import SimpleBar from "simplebar-react";
 
-const profile = [
+const profile =
   {
     name: 'Richard Okonicha',
     status: "Active",
@@ -9,7 +9,6 @@ const profile = [
     email: "richardokonicha@gmail.com",
     about: "I'm a hopeless romantic and always strive to believe in the good within everyone. I'm looking for an equally positive partner who loves to try new experiences and is a great and open communicator."
   }
-]
 
 const ProfilePane = () => {
     return (
@@ -58,16 +57,16 @@ const ProfilePane = () => {
             />
           </div>
 
-          <h5 className="font-size-16 mb-1 text-truncate">{profile[0].name}</h5>
+          <h5 className="font-size-16 mb-1 text-truncate">{profile.name}</h5>
           <p className="text-muted text-truncate mb-1">
             <i className="ri-record-circle-fill font-size-10 text-success mr-1 d-inline-block"></i>{" "}
-            {profile[0].status}
+            {profile.status}
           </p>
         </div>
         <SimpleBar className="p-4 user-profile-desc" data-simplebar>
           <div className="text-muted">
             <p className="mb-4">
-            {profile[0].about}
+            {profile.about}
             </p>
           </div>
 
@@ -98,22 +97,22 @@ const ProfilePane = () => {
                 <div className="card-body">
                   <div>
                     <p className="text-muted mb-1">Name</p>
-                    <h5 className="font-size-14">{profile[0].name}</h5>
+                    <h5 className="font-size-14">{profile.name}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Email</p>
-                    <h5 className="font-size-14">{profile[0].email}</h5>
+                    <h5 className="font-size-14">{profile.email}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Time</p>
-                    <h5 className="font-size-14">{profile[0].time}</h5>
+                    <h5 className="font-size-14">{profile.time}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Location</p>
-                    <h5 className="font-size-14 mb-0">{profile[0].location}</h5>
+                    <h5 className="font-size-14 mb-0">{profile.location}</h5>
                   </div>
                 </div>
               </div>

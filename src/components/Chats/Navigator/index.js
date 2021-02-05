@@ -1,11 +1,14 @@
-import { Link, useRouteMatch, useParams } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 import { useState } from 'react'
 
-
 const SideMenu = () => {
-    const [ active, setActive ] = useState(true)
+    const [ active, setActive ] = useState('')
     const { url } = useRouteMatch();
+
+    const profileAction = (icon) => {
+        setActive(icon)
+    }
 
     return (
             <div className="side-menu flex-lg-column mr-lg-1">
@@ -26,17 +29,17 @@ const SideMenu = () => {
                 <div className="flex-lg-column my-auto">
                     <ul className="nav nav-pills side-menu-nav justify-content-center" role="tablist">
                         <li className="nav-item" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Profile">
-                            <Link to={`${url}/profile`} className="nav-link" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab"  >
+                            <Link to={`${url}/profile`} onClick={()=>{profileAction("profile")}} className={ active==="profile" ? "nav-link active": "nav-link"} id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab"  >
                                 <i className="ri-user-2-line"></i>
                             </Link>
                         </li>
                         <li className="nav-item" data-toggle="toolt#pills-chatip" data-trigger="hover#pills-chat" data-placement="top" title="Chats">
-                            <Link to={`${url}/chat`} className={true ? "nav-link active": "nav-link"} id="pills-chat-tab" data-toggle="pill" href="#pills-chat" role="tab">
+                            <Link to={`${url}/chat`} onClick={()=>{profileAction("chat")}} className={active==="chat" ? "nav-link active": "nav-link"} id="pills-chat-tab" data-toggle="pill" href="#pills-chat" role="tab">
                                 <i className="ri-message-3-line"></i>
                             </Link>
                         </li>
                         <li className="nav-item" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Groups">
-                            <Link to={`${url}/group`} className={true ? "nav-link active": "nav-link"}  id="pills-groups-tab" data-toggle="pill" href="#pills-groups" role="tab">
+                            <Link to={`${url}/group`} onClick={()=>{profileAction("group")}} className={active==="group" ? "nav-link active": "nav-link"}  id="pills-groups-tab" data-toggle="pill" href="#pills-groups" role="tab">
                                 <i className="ri-group-line"></i>
                             </Link>
                         </li>
@@ -46,7 +49,7 @@ const SideMenu = () => {
                             </Link>
                         </li> */}
                         <li className="nav-item" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Settings">
-                            <Link to={`${url}/setting`} className="nav-link" id="pills-setting-tab" data-toggle="pill" href="#pills-setting" role="tab">
+                            <Link to={`${url}/setting`} onClick={()=>{profileAction("setting")}} className={active==="setting" ? "nav-link active": "nav-link"} id="pills-setting-tab" data-toggle="pill" href="#pills-setting" role="tab">
                                 <i className="ri-settings-2-line"></i>
                             </Link>
                         </li>

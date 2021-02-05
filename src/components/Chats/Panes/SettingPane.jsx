@@ -1,6 +1,16 @@
 import SimpleBar from "simplebar-react";
 
 
+const profile = 
+  {
+    name: 'Richard Okonicha',
+    status: "Active",
+    time: "12:40",
+    location: "California, USA",
+    email: "richardokonicha@gmail.com",
+    about: "I'm a hopeless romantic and always strive to believe in the good within everyone. I'm looking for an equally positive partner who loves to try new experiences and is a great and open communicator."
+  }
+
 const SettingPane = () => {
     return (
           
@@ -30,7 +40,7 @@ const SettingPane = () => {
             </button>
           </div>
 
-          <h5 className="font-size-16 mb-1 text-truncate">Patricia Smith</h5>
+          <h5 className="font-size-16 mb-1 text-truncate">{profile.name}</h5>
           <div className="dropdown d-inline-block mb-1">
             <a
               className="text-muted dropdown-toggle pb-1 d-block"
@@ -88,22 +98,22 @@ const SettingPane = () => {
 
                   <div>
                     <p className="text-muted mb-1">Name</p>
-                    <h5 className="font-size-14">Patricia Smith</h5>
+                    <h5 className="font-size-14">{profile.name}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Email</p>
-                    <h5 className="font-size-14">adc@123.com</h5>
+                    <h5 className="font-size-14">{profile.email}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Time</p>
-                    <h5 className="font-size-14">11:40 AM</h5>
+                    <h5 className="font-size-14">{profile.time}</h5>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-muted mb-1">Location</p>
-                    <h5 className="font-size-14 mb-0">California, USA</h5>
+                    <h5 className="font-size-14 mb-0">{profile.location}</h5>
                   </div>
                 </div>
               </div>
