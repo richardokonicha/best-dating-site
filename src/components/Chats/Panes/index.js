@@ -24,9 +24,6 @@ const Panes = () => {
     <div className="chat-leftsidebar mr-lg-1">
     <div className="tab-content">
         <Switch>
-          {/* <Route exact path={path}>
-            <Redirect to={`${path}/chat`} />
-          </Route>   */}
           <Route path={`${path}/profile`}>
             <ProfilePane/>
           </Route>
