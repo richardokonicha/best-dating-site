@@ -1,6 +1,6 @@
 import SimpleBar from "simplebar-react";
 import { useDispatch, useSelector } from "react-redux"
-import { updateChat } from "../../../store/actions/message"
+import { updateChat, updateReciever } from "../../../store/actions/message"
 
 
 
@@ -135,7 +135,6 @@ const ChatsPan = () => {
 
 export default ChatsPan
 
-
 const Recent = () => {
   const userList = useSelector(state => state.userState.users)
 
@@ -168,9 +167,8 @@ const ChatTile = ({ data }) => {
 
       
   function checkMessage(result) {
-   
     
-    if (result.userId === data.userId){
+    if (result.recieverUid === data.userId){
       return true
     } else {
       return false
@@ -178,7 +176,9 @@ const ChatTile = ({ data }) => {
   }
   const setChat = () => {
     let chat = messages.filter(checkMessage)
+    
     dispatch(updateChat(chat))
+    dispatch(updateReciever(data))
   }
   return (
     <li onClick={setChat} className={data.typing ? "typing" : ""}>

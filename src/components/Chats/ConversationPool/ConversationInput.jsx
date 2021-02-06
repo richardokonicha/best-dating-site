@@ -9,6 +9,9 @@ const ConversationInput = (props) => {
     const [ error, setError ] = useState('')
     const [ content, setContent ] = useState('')
     const { authUser } = useSelector( state => state.sessionState)
+    const { chat } = useSelector( state => state.messageState)
+    console.log(chat)
+    
 
 
     const handleSubmit = ( event ) => {
@@ -16,10 +19,14 @@ const ConversationInput = (props) => {
         props.firebase.messages().add({
             userId: authUser.uid,
             content: content,
+            // recieverUid: reciever_uid,
             createdAt: props.firebase.serverValue.serverTimestamp(),
           })
         console.log( "cheers" )
+        console.log(content)
         setContent("")
+        console.log(content)
+
     }
 
     const onChangeText = (e) => {
@@ -30,7 +37,7 @@ const ConversationInput = (props) => {
             {/* <form onSubmit={handleSubmit}> */}
             <div className="col">
                 <div>
-                    <input onChange={onChangeText} type="text" className="form-control form-control-lg bg-light border-light" placeholder="Enter Message..."   />
+                    <input onChange={onChangeText} type="text" className="form-control form-control-lg bg-light border-light" placeholder="Enter Message..." value={content}  />
                     {error ? (
                         <p className="text-danger">{error}</p>
                     ) : null}

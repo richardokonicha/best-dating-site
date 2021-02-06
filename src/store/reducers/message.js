@@ -1,10 +1,12 @@
 const INITIAL_STATE = {
   messages: [],
   limit: 5,
-  chat: null
+  chat: [],
+  reciever: {}
 };
 
 const applySetMessages = (state, action) => {
+  console.log(action, "the action")
   return (
     {
       ...state,
@@ -13,9 +15,7 @@ const applySetMessages = (state, action) => {
   )
 }
 
-
 const applySetChat = (state, action) => {
-  console.log("laljfkdjslfjal", action)
   return (
     {
       ...state,
@@ -23,6 +23,17 @@ const applySetChat = (state, action) => {
     }
   )
 }
+
+
+const applySetReciever = (state, action) => {
+  return (
+    {
+      ...state,
+      reciever: action.payload,
+    }
+  )
+}
+
 
 const applySetMessagesLimit = (state, action) => ({
   ...state,
@@ -33,6 +44,9 @@ function messageReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'MESSAGES_SET': {
       return applySetMessages(state, action);
+    }
+    case "RECIEVER_SET": { 
+      return applySetReciever(state, action)
     }
     case "CHAT_SET": {
       return applySetChat(state, action)

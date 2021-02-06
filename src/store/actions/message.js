@@ -10,7 +10,6 @@ export function updateMessage(result){
   }
 
 
-
 export function updateChat(result){
 return {
     type: "CHAT_SET",
@@ -19,3 +18,11 @@ return {
 }
 }
 
+export function updateReciever(result){
+    return {
+        type: "RECIEVER_SET",
+        payload: result,
+        message: "Update Action Success!"
+    }
+    }
+    
