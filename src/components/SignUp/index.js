@@ -51,9 +51,11 @@ const SignUpPage = (props) => {
     props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
+        let userId = authUser.user.uid 
         // Create a user in your Firebase realtime database
         return props.firebase.user(authUser.user.uid).set(
           {
+            userId,
             username,
             email,
             roles,

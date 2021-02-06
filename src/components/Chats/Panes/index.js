@@ -4,22 +4,11 @@ import ProfilePane from './ProfilePane'
 import ChatsPane from './ChatsPane'
 import GroupsPane from "./GroupsPane"
 import SettingPane from "./SettingPane"
-import { Switch, Route, BrowserRouter as Router , Redirect, useRouteMatch} from "react-router-dom";
+import { Switch, Route,  useRouteMatch} from "react-router-dom";
 
-
-const userData = [
-  {
-    name: "Patrick Hendricks",
-    lastMessage: "Hey! there I'm available",
-    unread: true,
-    lastSeen: '05 min',
-    profilePicture: 'P'
-  }
-]
 
 const Panes = () => {
   let { path} = useRouteMatch();
-
   return (
     <div className="chat-leftsidebar mr-lg-1">
     <div className="tab-content">

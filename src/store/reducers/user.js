@@ -1,11 +1,17 @@
 const INITIAL_STATE = {
-  users: null,
+  users: []
+  // userId: null,
+  // email: "",
+  // roles: null,
+  // name: "",
+  // location: "",
+  // about: ""
 };
 
-const applySetUsers = (state, action) => ({
-  ...state,
-  users: action.users,
-});
+// const applySetUsers = (state, action) => ({
+//   ...state,
+//   users: action.users,
+// });
 
 const applySetUser = (state, action) => ({
   ...state,
@@ -15,6 +21,15 @@ const applySetUser = (state, action) => ({
   },
 });
 
+const applySetUsers = (state, action) => {
+  return (
+    {
+      ...state,
+      users: action.payload,
+    }
+  )
+}
+
 function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'USERS_SET': {
@@ -22,6 +37,10 @@ function userReducer(state = INITIAL_STATE, action) {
     }
     case 'USER_SET': {
       return applySetUser(state, action);
+    }
+    case "UPDATE USER": {
+      return applySetUsers(state, action);
+
     }
     default:
       return state;

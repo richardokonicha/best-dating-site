@@ -37,11 +37,12 @@ const Messages = (props) => {
   const onCreateMessage = (event, authUser) => {
     event.preventDefault()
     props.firebase.messages().add({
-      text: text,
       userId: authUser.uid,
+      content: text,
       createdAt: firebase.serverValue.serverTimestamp(),
     })
     setText('')
+    console.log("entered")
   }
 
   const onEditMessage = (message, text) => {

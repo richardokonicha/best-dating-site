@@ -5,7 +5,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import Form from '../Widget/Form'
   
-const INITIAL_STATE = {
+const INITIAL_STATE = { 
   email: '',
   password: '',
   error: null,
@@ -28,6 +28,8 @@ const SignInPage = (props) => {
     props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
+
+
         updateFormState({ ...INITIAL_STATE });
         props.history.push(ROUTES.CHATS);
       })
