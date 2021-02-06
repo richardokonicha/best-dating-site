@@ -6,7 +6,7 @@ import ConversationPool from './ConversationPool';
 import { withAuthorization, withEmailVerification } from '../Session';
 import { compose } from 'recompose';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {updateUser} from '../../store/actions/user';
 import { updateMessage } from '../../store/actions/message'
 import { withFirebase } from '../Firebase';
@@ -50,6 +50,8 @@ const Chat = (props) => {
     const { firebase, messages, onSetUsers, onSetMessages } = props
     const [loading, setLoading] = useState(false)
     const [text, setText] = useState("")
+    const authUser = useSelector(state => state.sessionState.authUser)
+
     const dispatch = useDispatch()
 
 
@@ -83,13 +85,17 @@ const Chat = (props) => {
     useEffect(() => {
         const unsubscribe = firebase
         .db.collection('messages')
+        // .where("userId", "==", authUser.uid)
+        .orderBy('createdAt', "asc")
         .onSnapshot(snapshot => {
             if (snapshot.size) {
             let myDataArray = []
             snapshot.forEach(doc =>
                 myDataArray.push({ ...doc.data() })
             )
+            console.log(myDataArray, "data")
             dispatch(updateMessage(myDataArray))
+            
             setLoading(false)
             } else {
             setLoading(false)
@@ -103,7 +109,6 @@ const Chat = (props) => {
     const fetchProfiles = () => {
         console.log(props.firebase)
     }
-
 
     return (
         <div className="layout-wrapper d-lg-flex">
