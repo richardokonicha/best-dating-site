@@ -68,11 +68,8 @@ const Chat = (props) => {
                 myDataArray.push({ ...doc.data() })
             )
             let update = dispatch(updateUser(myDataArray))
-            // console.log(update)
             setLoading(false)
             } else {
-            // let update = dispatch(updateUser(panelList))
-            // console.log(update)
             setLoading(false)
             }
         })
@@ -93,7 +90,6 @@ const Chat = (props) => {
             snapshot.forEach(doc =>
                 myDataArray.push({ ...doc.data() })
             )
-            console.log(myDataArray, "data")
             dispatch(updateMessage(myDataArray))
             
             setLoading(false)
@@ -107,7 +103,6 @@ const Chat = (props) => {
     }, [firebase, dispatch])
     
     const fetchProfiles = () => {
-        console.log(props.firebase)
     }
 
     return (

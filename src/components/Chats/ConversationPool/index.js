@@ -25,9 +25,9 @@ const initialState = {
 const ConversationPool = (props) => {
 
 	const { authUser } = useSelector(state => state.sessionState)
+	const { reciever } = useSelector(state => state.messageState)
 
 	const [sidebar, setSidebar] = useState(false)
-	console.log(sidebar)
 	// const [chatState, setChatState] = useState(initialState)
 
 	// const handleSubmit = (e) => {
@@ -54,10 +54,10 @@ const ConversationPool = (props) => {
 										<a href="/chat" className="user-chat-remove text-muted font-size-16 p-2"><i className="ri-arrow-left-s-line"></i></a>
 									</div>
 									<div className="mr-3">
-										<img src="assets/images/users/avatar-4.jpg" className="rounded-circle avatar-xs" alt="" />
+										<img src="assets/images/users/avatar-4.jpg" className="rounded-circle avatar-xs" alt={reciever.label} />
 									</div>
 									<div className="media-body overflow-hidden">
-										<h5 className="font-size-16 mb-0 text-truncate"><a href="/chat" className="text-reset user-profile-show">Broadcast</a> <i className="ri-record-circle-fill font-size-10 text-success d-inline-block ml-1"></i></h5>
+										<h5 className="font-size-16 mb-0 text-truncate"><a href="/chat" className="text-reset user-profile-show">{reciever.name}</a> <i className="ri-record-circle-fill font-size-10 text-success d-inline-block ml-1"></i></h5>
 									</div>
 								</div>
 							</div>

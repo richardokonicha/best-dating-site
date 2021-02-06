@@ -110,7 +110,6 @@ const Login = props => {
     setLoading(true);
     await dispatch(authAction.Login(field.email, field.password));
     setLoading(false);
-    console.log(props.state.auth)
     // history.replace(from);
   };
 

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { withFirebase } from "../../Firebase"
 import { withAuthentication, withEmailVerification} from "../../Session"
@@ -9,24 +9,19 @@ const ConversationInput = (props) => {
     const [ error, setError ] = useState('')
     const [ content, setContent ] = useState('')
     const { authUser } = useSelector( state => state.sessionState)
-    const { chat } = useSelector( state => state.messageState)
-    console.log(chat)
-    
+    const { chat, messages, reciever } = useSelector( state => state.messageState)
 
+    // let chat = messages.filter(checkMessage)
 
     const handleSubmit = ( event ) => {
         event.preventDefault()
         props.firebase.messages().add({
             userId: authUser.uid,
             content: content,
-            // recieverUid: reciever_uid,
+            recieverUid: reciever.userId,
             createdAt: props.firebase.serverValue.serverTimestamp(),
           })
-        console.log( "cheers" )
-        console.log(content)
         setContent("")
-        console.log(content)
-
     }
 
     const onChangeText = (e) => {
