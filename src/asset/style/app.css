@@ -746,7 +746,10 @@
 
 .side-menu-nav .nav-item .nav-link.active {
 	background-color: #f7f7ff;
-	color: #7269ef
+	/* color: #7269ef */
+	color: #DE0150
+
+	
 }
 
 .side-menu-nav .nav-item.show>.nav-link {
