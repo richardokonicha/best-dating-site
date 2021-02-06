@@ -42,7 +42,6 @@ const Messages = (props) => {
       createdAt: firebase.serverValue.serverTimestamp(),
     })
     setText('')
-    console.log("entered")
   }
 
   const onEditMessage = (message, text) => {
@@ -56,8 +55,6 @@ const Messages = (props) => {
   }
 
   const onRemoveMessage = uid => {
-    console.log(uid)
-    console.log(messages)
     firebase.db.collection("messages").doc(uid).delete().then(function() {
       console.log("Document successfully deleted!", uid);
     }).catch(function(error) {

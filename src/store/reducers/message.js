@@ -6,7 +6,6 @@ const INITIAL_STATE = {
 };
 
 const applySetMessages = (state, action) => {
-  console.log(action, "the action")
   return (
     {
       ...state,

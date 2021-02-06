@@ -1,6 +1,7 @@
 import SimpleBar from "simplebar-react";
 import { useDispatch, useSelector } from "react-redux"
 import { updateChat, updateReciever } from "../../../store/actions/message"
+import { useEffect } from "react";
 
 
 
@@ -156,19 +157,31 @@ const Recent = () => {
         </ul>
       </SimpleBar>
     </div>
-
   )
 }
 
 const ChatTile = ({ data }) => {
   const dispatch = useDispatch()
 
-  const { messages } = useSelector(state => state.messageState)
+  const { messages, reciever, chat } = useSelector(state => state.messageState)
+  
+  useEffect(()=>{
 
+    function checkMessage(result) {
+      
+      if (result.recieverUid === reciever.userId){
+        return true
+      } else {
+        return false
+      }
+    }
+    let chat = messages.filter(checkMessage)
+    dispatch(updateChat(chat))
+
+  },[messages, reciever, dispatch])
       
   function checkMessage(result) {
-    
-    if (result.recieverUid === data.userId){
+    if (result.recieverUid === reciever.userId){
       return true
     } else {
       return false
@@ -176,7 +189,6 @@ const ChatTile = ({ data }) => {
   }
   const setChat = () => {
     let chat = messages.filter(checkMessage)
-    
     dispatch(updateChat(chat))
     dispatch(updateReciever(data))
   }

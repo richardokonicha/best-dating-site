@@ -23,7 +23,6 @@ class UserItem extends Component {
       .onSnapshot(snapshot => {
 
         this.setState({ loading: false });
-        console.log(snapshot.val(), this.props.match.params.id)
         this.props.onSetUser( snapshot.val(), this.props.match.params.id, );
 
       });
