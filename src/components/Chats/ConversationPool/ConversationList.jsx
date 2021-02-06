@@ -1,49 +1,18 @@
 import { useState } from "react";
-
-const chats = [
-    {
-        uid: 5,
-        content: "Good morning",
-        timestamp: "4:30 pm",
-        email: "John Doe"
-    },
-    {
-        uid: 6,
-        content: "Good morning, How are you? What about our next meeting ?",
-        timestamp: "10:02 pm",
-        email: "me"
-    },
-    {
-        uid: 5,
-        content: "Did a dog die",
-        timestamp: "10:03 pm",
-        email: "John Doe"
-    },
-    {
-        uid: 6,
-        content: "Yes it did lol",
-        timestamp: "10:03 pm",
-        email: "me"
-    },
-    {
-        uid: 5,
-        content: "Fuck, Ok lets meet by 4:00 pm",
-        timestamp: "10:03 pm",
-        email: "me"
-    },
-]
+import { useSelector, useDispatch } from "react-redux"
 
 const ConversationList = () => {
     // const [ chats, setChat ] = useState([])
     const [user, setUser] = useState({ uid: 5 })
-
+    const messages  = useSelector(state => state.messageState)
+    const { uid } = useSelector(state => state.sessionState.authUser)
+    const chat = messages.messages
 
     return (
         <ul className="list-unstyled mb-0">
-            {chats.map((chat, index) => {
+            {chat.map((chat, index) => {
                 return (
-                    <>
-                        <li key={index} className={user.uid === chat.uid ? "" : "right"}>
+                        <li key={index} className={uid === chat.uid ? "" : "right"}>
                             <div className="conversation-list">
                                 <div className="user-chat-content">
                                     <div className="ctext-wrap">
@@ -68,8 +37,7 @@ const ConversationList = () => {
                                     <div className="conversation-name">{chat.email}</div>
                                 </div>
                             </div>
-                        </li>
-                        { false ? (
+                            { false ? (
                             <li>
                                 <div className="chat-day-title">
                                     <span className="title">Today</span>
@@ -77,7 +45,8 @@ const ConversationList = () => {
                             </li>
                         ) : (null)
                         }
-                    </>
+                        </li>
+                       
                 );
             })}
         </ul>

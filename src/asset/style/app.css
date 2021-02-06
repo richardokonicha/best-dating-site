@@ -1191,7 +1191,6 @@
 .user-profile-sidebar {
 	height: 100vh;
 	background-color: #fff;
-	display: none;
 	min-width: 380px;
 	max-width: 380px
 }

@@ -1,74 +1,44 @@
 import SimpleBar from "simplebar-react";
-
-const panelList = [
-    {
-      name: "Patrick Hendricks",
-      lastMessage: "Hey! there I'm available",
-      unread: true,
-      lastSeen: '05 min',
-      label: 'P',
-      typing: true,
-      online: true
-
-    },
-    {
-      name: "John Doe",
-      lastMessage: "Hello sir the job is done.",
-      unread: false,
-      last: "02 hours",
-      label: "J",
-      typing: false,
-      online: false
+import { useDispatch, useSelector } from "react-redux"
+import { updateChat } from "../../../store/actions/message"
 
 
-    },
-     {
-      name: "Alfred Inyang",
-      lastMessage: "We have a review by 8:00pm",
-      unread: true,
-      last: "now",
-      label: "A",
-      typing: true,
-      online: true
-    }
-  ]
-  
 
 const ChatsPan = () => {
-    return (
-        <div
-        className="tab-pane fade show active"
-        id="pills-chat"
-        role="tabpanel"
-        aria-labelledby="pills-chat-tab"
-      >
-        <div>
 
 
-          <div className="px-4 pt-4">
-            <h4 className="mb-4">Chats</h4>
-            <div className="search-box chat-search-box">
-              <div className="input-group mb-3 bg-light  input-group-lg rounded-lg">
-                <div className="input-group-prepend">
-                  <button
-                    className="btn btn-link text-muted pr-1 text-decoration-none"
-                    type="button"
-                  >
-                    <i className="ri-search-line search-icon font-size-18"></i>
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  className="form-control bg-light"
-                  placeholder="Search messages or users"
-                />
+  return (
+    <div
+      className="tab-pane fade show active"
+      id="pills-chat"
+      role="tabpanel"
+      aria-labelledby="pills-chat-tab"
+    >
+      <div>
+        <div className="px-4 pt-4">
+          <h4 className="mb-4">Chats</h4>
+          <div className="search-box chat-search-box">
+            <div className="input-group mb-3 bg-light  input-group-lg rounded-lg">
+              <div className="input-group-prepend">
+                <button
+                  className="btn btn-link text-muted pr-1 text-decoration-none"
+                  type="button"
+                >
+                  <i className="ri-search-line search-icon font-size-18"></i>
+                </button>
               </div>
+              <input
+                type="text"
+                className="form-control bg-light"
+                placeholder="Search messages or users"
+              />
             </div>
-          </div> 
+          </div>
+        </div>
 
 
-          {/* carousel */}
-          {/* <div className="px-4 pb-4" dir="ltr">
+        {/* carousel */}
+        {/* <div className="px-4 pb-4" dir="ltr">
             <div className="owl-carousel owl-theme" id="user-status-carousel">
               <div className="item">
                 <a href="/chat" className="user-status-box">
@@ -153,47 +123,67 @@ const ChatsPan = () => {
               </div>
             </div>
           </div> */}
-          {/* carousel end */}
+        {/* carousel end */}
 
 
-          <Recent/>
-        </div>
+        <Recent />
       </div>
+    </div>
 
-    )
+  )
 }
 
 export default ChatsPan
 
 
 const Recent = () => {
+  const userList = useSelector(state => state.userState.users)
+
   return (
     <div className="px-2">
-    <h5 className="mb-3 px-3 font-size-16">Recent</h5>
+      <h5 className="mb-3 px-3 font-size-16">Recent</h5>
 
-    <SimpleBar className="chat-message-list">
-      <ul className="list-unstyled chat-list chat-user-list">
+      <SimpleBar className="chat-message-list">
+        <ul className="list-unstyled chat-list chat-user-list">
 
-        {panelList.map(data => {
-            return(
+          {userList.map((data, index) => {
+            return (
               // <i className="ri-image-fill align-middle mr-1"></i>{" "}
               // <li className="active">
               // <li className="unread ">
-              <ChatTile data={data}/>
+              <ChatTile key={index} data={data} />
             )
           })}
-      </ul>
-    </SimpleBar>
-  </div>
+        </ul>
+      </SimpleBar>
+    </div>
 
   )
 }
 
-const ChatTile = ({data}) => {
+const ChatTile = ({ data }) => {
+  const dispatch = useDispatch()
+
+  const { messages } = useSelector(state => state.messageState)
+
+      
+  function checkMessage(result) {
+   
+    
+    if (result.userId === data.userId){
+      return true
+    } else {
+      return false
+    }
+  }
+  const setChat = () => {
+    let chat = messages.filter(checkMessage)
+    dispatch(updateChat(chat))
+  }
   return (
-    <li className={data.typing ? "typing" : ""}>
+    <li onClick={setChat} className={data.typing ? "typing" : ""}>
       {/* <li > */}
-      <a href="/chat">
+      <a >
         <div className="media">
           <div className="chat-user-img align-self-center mr-3 online">
             <div className="avatar-xs">
@@ -215,10 +205,10 @@ const ChatTile = ({data}) => {
                 </span>
               </p>
             ) : (
-              <p className="chat-user-message text-truncate mb-0">
-                {data.lastMessage}
-              </p>
-            )}
+                <p className="chat-user-message text-truncate mb-0">
+                  {data.lastMessage}
+                </p>
+              )}
           </div>
           <div className="font-size-11">{data.lastSeen}</div>
           {data.unread ? (
