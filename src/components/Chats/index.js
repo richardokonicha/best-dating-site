@@ -54,8 +54,6 @@ const Chat = (props) => {
 
     const dispatch = useDispatch()
 
-
-
     // dispatch({ type: 'update Users' })
         
     useEffect(() => {
@@ -78,7 +76,6 @@ const Chat = (props) => {
         }
     }, [firebase, dispatch])
 
-        
     useEffect(() => {
         const unsubscribe = firebase
         .db.collection('messages')
@@ -102,16 +99,12 @@ const Chat = (props) => {
         }
     }, [firebase, dispatch])
     
-    const fetchProfiles = () => {
-    }
-
     return (
         <div className="layout-wrapper d-lg-flex">
         <Navigator />
         <Panes/>
         <ConversationPool/>
         </div>
-
     )
 }   
 

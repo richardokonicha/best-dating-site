@@ -8,7 +8,7 @@ const ConversationList = () => {
 		<ul className="list-unstyled mb-0">
 			{chat.map((chat, index) => {
 				return (
-					<li key={index} className={uid === chat.uid ? "" : "right"}>
+					<li key={index} className={uid !== chat.userId ? "" : "right"}>
 						<div className="conversation-list">
 							<div className="user-chat-content">
 								<div className="ctext-wrap">
