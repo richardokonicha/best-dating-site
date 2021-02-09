@@ -206,7 +206,7 @@ const ChatTile = ({ data }) => {
             {data.online ? <span className="user-status"></span> : null}
           </div>
           <div className="media-body overflow-hidden">
-            <h5 className="text-truncate font-size-15 mb-1">{data.name}</h5>
+            <h5 className="text-truncate font-size-15 mb-1">{data.username}</h5>
             {data.typing ? (
               <p className="chat-user-message text-truncate mb-0">
                 typing

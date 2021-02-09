@@ -57,7 +57,7 @@ const ConversationPool = (props) => {
 										<img src="assets/images/users/avatar-4.jpg" className="rounded-circle avatar-xs" alt={reciever.label} />
 									</div>
 									<div className="media-body overflow-hidden">
-										<h5 className="font-size-16 mb-0 text-truncate"><a href="/chat" className="text-reset user-profile-show">{reciever.name}</a> <i className="ri-record-circle-fill font-size-10 text-success d-inline-block ml-1"></i></h5>
+										<h5 className="font-size-16 mb-0 text-truncate"><a href="/chat" className="text-reset user-profile-show">{reciever.username}</a> <i className="ri-record-circle-fill font-size-10 text-success d-inline-block ml-1"></i></h5>
 									</div>
 								</div>
 							</div>
