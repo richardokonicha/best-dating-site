@@ -126,7 +126,6 @@ const ChatsPan = () => {
           </div> */}
         {/* carousel end */}
 
-
         <Recent />
       </div>
     </div>
@@ -138,6 +137,7 @@ export default ChatsPan
 
 const Recent = () => {
   const userList = useSelector(state => state.userState.users)
+  const authUser = useSelector(state => state.sessionState.authUser)
 
   return (
     <div className="px-2">
@@ -146,13 +146,19 @@ const Recent = () => {
       <SimpleBar className="chat-message-list">
         <ul className="list-unstyled chat-list chat-user-list">
 
+          {/* { data.userId !== authUser.userId ? (<ChatTile key={index} data={data} />): null } */}
+
           {userList.map((data, index) => {
-            return (
-              // <i className="ri-image-fill align-middle mr-1"></i>{" "}
-              // <li className="active">
-              // <li className="unread ">
-              <ChatTile key={index} data={data} />
-            )
+            if (data.userId !== authUser.userId) {
+              return (
+                // <i className="ri-image-fill align-middle mr-1"></i>{" "}
+                // <li className="active">
+                // <li className="unread ">
+                <ChatTile key={index} data={data} />
+              )
+            } else {
+              return (null)
+            }
           })}
         </ul>
       </SimpleBar>
@@ -169,7 +175,7 @@ const ChatTile = ({ data }) => {
 
     function checkMessage(result) {
       
-      if (result.recieverUid === reciever.userId){
+      if (result.userId === reciever.userId || result.recieverUid === reciever.userId){
         return true
       } else {
         return false
@@ -181,7 +187,7 @@ const ChatTile = ({ data }) => {
   },[messages, reciever, dispatch])
       
   function checkMessage(result) {
-    if (result.recieverUid === reciever.userId){
+    if (result.userId === reciever.userId || result.recieverUid === reciever.userId ){
       return true
     } else {
       return false
