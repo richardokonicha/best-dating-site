@@ -1,0 +1,31 @@
+name: superlinter
+
+# run this workflow everytime a new commit is pushed to the current repository
+on: push
+
+jobs:
+
+ # set job key
+   super-lint:
+   
+     # set job name
+     name: Lint code
+     
+     # set machine to run on
+     runs-on: ubuntu-latest
+     
+     steps: 
+       
+       # checks out a copy of the repository 
+       - name: Checkout out copy of repo
+         uses: @actions/checkout@v2
+         
+       # runs super linter action
+       - name: run super linter
+         uses: @actions/super-linter@v3
+         env:
+           DEFAULT_BRANCH: master
+           GITHUB_TOKE: ${{ secrets.GITHUB_TOKEN }}
+     
+     
+     
