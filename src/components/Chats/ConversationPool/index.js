@@ -39,7 +39,7 @@ const ConversationPool = (props) => {
 	}
 
 	const SignOut = () => {
-		// firebase.doSignOut()
+		props.firebase.doSignOut()
 	}
 
 	return (
@@ -115,6 +115,8 @@ const ConversationPool = (props) => {
 						<ConversationInput />
 					</div>
 				</div>
+
+				
 				{sidebar ?
 					<div className="user-profile-sidebar">
 						<div className="px-3 px-lg-4 pt-3 pt-lg-4">

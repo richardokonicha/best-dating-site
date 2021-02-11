@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import ReactLoading from "react-loading";
 
 const Input = (props) => {
   const { onChange, label, icon, type, formType } = props;
@@ -32,7 +33,7 @@ const Input = (props) => {
 };
 
 const Form = (props) => {
-  const { formType, onChange, action, formState, onChangeCheckbox } = props;
+  const { formType, onChange, action, formState, onChangeCheckbox, loading } = props;
   const { error } = formState;
   return (
     <div className="account-pages ">
@@ -139,7 +140,17 @@ const Form = (props) => {
                           onClick={(e) => action(e)}
                           className="btn btn-primary btn-block waves-effect waves-light"
                         >
-                          Sign in
+                          Sign in   
+                          {
+                            loading ? (
+                              <div style={{display: 'flex',  justifyContent: 'center' }}>
+                                <ReactLoading type="spin" color="#ffffff" height={'5%'} width={'5%'} />
+                              </div>
+
+                            ) : (
+                              null
+                            )
+                          }
                         </button>
                       ) : (
                         <button
@@ -147,6 +158,16 @@ const Form = (props) => {
                           className="btn btn-primary btn-block waves-effect waves-light"
                         >
                           Sign Up
+                          {
+                            loading ? (
+                              <div style={{display: 'flex',  justifyContent: 'center' }}>
+                                <ReactLoading type="spin" color="#ffffff" height={'5%'} width={'5%'} />
+                              </div>
+
+                            ) : (
+                              null
+                            )
+                          }
                         </button>
                       )}
                     </div>
