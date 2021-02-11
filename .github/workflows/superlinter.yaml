@@ -18,11 +18,11 @@ jobs:
        
        # checks out a copy of the repository 
        - name: Checkout out copy of repo
-         uses: @actions/checkout@v2
+         uses: actions/checkout@v2
          
        # runs super linter action
        - name: run super linter
-         uses: @actions/super-linter@v3
+         uses: github/super-linter@v3
          env:
            DEFAULT_BRANCH: master
            GITHUB_TOKE: ${{ secrets.GITHUB_TOKEN }}
