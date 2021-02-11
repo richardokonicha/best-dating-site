@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateChat, updateReciever } from "../../../store/actions/message"
 import { useEffect } from "react";
 
-
-
 const ChatsPan = () => {
-
 
   return (
     <div
@@ -36,7 +33,6 @@ const ChatsPan = () => {
             </div>
           </div>
         </div>
-
 
         {/* carousel */}
         {/* <div className="px-4 pb-4" dir="ltr">
@@ -145,7 +141,6 @@ const Recent = () => {
 
       <SimpleBar className="chat-message-list">
         <ul className="list-unstyled chat-list chat-user-list">
-
           {/* { data.userId !== authUser.userId ? (<ChatTile key={index} data={data} />): null } */}
 
           {userList.map((data, index) => {
@@ -168,13 +163,10 @@ const Recent = () => {
 
 const ChatTile = ({ data }) => {
   const dispatch = useDispatch()
-
-  const { messages, reciever, chat } = useSelector(state => state.messageState)
+  const { messages, reciever } = useSelector(state => state.messageState)
   
   useEffect(()=>{
-
     function checkMessage(result) {
-      
       if (result.userId === reciever.userId || result.recieverUid === reciever.userId){
         return true
       } else {
@@ -206,7 +198,7 @@ const ChatTile = ({ data }) => {
           <div className="chat-user-img align-self-center mr-3 online">
             <div className="avatar-xs">
               <span className="avatar-title rounded-circle bg-soft-primary text-primary">
-                {data.label}
+                {data.username ? data.username.slice(0, 1).toUpperCase(): null}
               </span>
             </div>
             {data.online ? <span className="user-status"></span> : null}

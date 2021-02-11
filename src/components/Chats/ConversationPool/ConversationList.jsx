@@ -5,7 +5,7 @@ const ConversationList = () => {
 	const { uid } = useSelector(state => state.sessionState.authUser)
 	
 	return (
-		<ul className="list-unstyled mb-0">
+		<ul className="list-unstyled mb-0" >
 			{chat.map((chat, index) => {
 				return (
 					<li key={index} className={uid !== chat.userId ? "" : "right"}>

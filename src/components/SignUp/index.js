@@ -28,6 +28,8 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 
 const SignUpPage = (props) => {
   const [formState, updateFormState] = useState(INITIAL_STATE)
+  const [ loading, setLoading ] = useState(false)
+
   
   const onChange = e => {
     e.persist()
@@ -40,6 +42,8 @@ const SignUpPage = (props) => {
   };
 
   const onSubmit = event => {
+    setLoading(true)
+
     event.preventDefault();
     const { username, email, password, isAdmin } = formState;
     const roles = {};
@@ -62,12 +66,17 @@ const SignUpPage = (props) => {
           },
           { merge: true }
         );
-      })
+        
+      }
+      
+      )
       .then(() => {
         return props.firebase.doSendEmailVerification();
       })
       .then(() => {
         updateFormState({ ...INITIAL_STATE });
+        setLoading(false)
+
         props.history.push(ROUTES.HOME);
       })
       .catch(error => {
@@ -75,6 +84,8 @@ const SignUpPage = (props) => {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
         updateFormState(()=>({...formState, error: error.message}))
+        setLoading(false)
+
       });
   };
 
@@ -86,6 +97,7 @@ const SignUpPage = (props) => {
     updateFormState={updateFormState} 
     formState={formState}
     onChangeCheckbox={onChangeCheckbox}
+    loading={loading}
     />
   );
 }
