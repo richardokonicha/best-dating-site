@@ -9,7 +9,8 @@ export const theme =  createMuiTheme({
             main: "#E90D66"
         },
         text: {
-            primary: "#ffffff"
+            primary: "#ffffff",
+            secondary: "#E90D66"
         }
     },
     typography: {
@@ -35,6 +36,15 @@ export const theme =  createMuiTheme({
                 height: "49px",
                 borderRadius: "8px",
                 padding: '3px'
+            }
+        },
+
+        MuiCardHeader: {
+            title: {
+                fontFamily: 'Segoe UI, Semibold',
+                fontSize: "30px",
+                color: '#6E6D6D',
+                paddingTop: '1rem'
             }
         }
     }
