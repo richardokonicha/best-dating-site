@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
     navRoot: {
         paddingTop: '1em',
-        paddingLeft: '30vw'
+        paddingLeft: '35vw'
     }
 
 }));

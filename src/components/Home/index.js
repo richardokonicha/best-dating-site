@@ -6,12 +6,14 @@ import { compose } from 'recompose';
 import { withAuthorization, withEmailVerification } from '../Session';
 
 import NavSection from './Nav';
+import TopSection from './Header';
 // import Messages from '../Messages';
 // import Chats from '../Chats'
 
 const HomePage = () => (
   <ThemeProvider theme={theme}>
     <NavSection/>
+    <TopSection/>
     {/* <Messages /> */}
     {/* <Chats/> */}
   </ThemeProvider>
