@@ -1,18 +1,22 @@
 import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles'
+import { theme } from '../../theme';
 import { compose } from 'recompose';
 
 import { withAuthorization, withEmailVerification } from '../Session';
-import Messages from '../Messages';
-import Chats from '../Chats'
+
+import NavSection from './Nav';
+import TopSection from './Header';
+// import Messages from '../Messages';
+// import Chats from '../Chats'
 
 const HomePage = () => (
-  <>
-    {/* <h1>Home Page</h1>
-    <p>The Home Page is accessible by every signed in user.</p> */}
-
-    <Messages />
+  <ThemeProvider theme={theme}>
+    <NavSection/>
+    <TopSection/>
+    {/* <Messages /> */}
     {/* <Chats/> */}
-  </>
+  </ThemeProvider>
 );
 
 const condition = authUser => !!authUser;
