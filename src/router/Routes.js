@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect, useParams, useR
 
 import SignInPage from '../components/SignIn';
 import SignUpPage from '../components/SignUp';
-
+import LandingPage from '../components/Landing'
 import Navigation from '../components/Navigation';
 import PasswordForgetPage from '../components/PasswordForget';
 import HomePage from '../components/Home';
@@ -33,9 +33,9 @@ const Routes = props => {
         <hr /> */}
 
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
            <Redirect to={ROUTES.CHATS}/>
-          </Route>
+          </Route> */}
           <Route path="/u">
             <Chats />
           </Route>
@@ -45,7 +45,7 @@ const Routes = props => {
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} /> 
-          {/* <Route path={ROUTES.PROFILE} component={ProfilePane} />  */}
+          <Route path={ROUTES.LANDING} component={LandingPage} /> 
         </Switch>
       </div>
     </Router>
